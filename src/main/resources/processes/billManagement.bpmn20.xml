@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="billManagement" name="billManagement" isExecutable="true">
+    <startEvent id="startevent" name="Start"></startEvent>
+    <userTask id="validateBill" name="Validate Bill" activiti:candidateGroups="validators"></userTask>
+    <userTask id="approveBill" name="Approve Bill" activiti:candidateGroups="approvers"></userTask>
+    <userTask id="payBill" name="Pay Bill" activiti:candidateGroups="payers"></userTask>
+    <sequenceFlow id="flow2" sourceRef="validateBill" targetRef="approveBill"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="approveBill" targetRef="payBill"></sequenceFlow>
+    <endEvent id="endevent" name="End"></endEvent>
+    <serviceTask id="servicetask1" name="Process Payment" activiti:expression="${paymentService.processPayment(execution)}"></serviceTask>
+    <sequenceFlow id="flow5" sourceRef="payBill" targetRef="servicetask1"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="servicetask1" targetRef="endevent"></sequenceFlow>
+    <serviceTask id="servicetask2" name="Preprocess Bill" activiti:expression="${preprocessService.preProcessBill(execution)}"></serviceTask>
+    <sequenceFlow id="flow7" sourceRef="servicetask2" targetRef="validateBill"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="startevent" targetRef="servicetask2"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_billManagement">
+    <bpmndi:BPMNPlane bpmnElement="billManagement" id="BPMNPlane_billManagement">
+      <bpmndi:BPMNShape bpmnElement="startevent" id="BPMNShape_startevent">
+        <omgdc:Bounds height="35.0" width="35.0" x="100.0" y="260.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="validateBill" id="BPMNShape_validateBill">
+        <omgdc:Bounds height="55.0" width="105.0" x="391.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="approveBill" id="BPMNShape_approveBill">
+        <omgdc:Bounds height="55.0" width="105.0" x="571.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="payBill" id="BPMNShape_payBill">
+        <omgdc:Bounds height="55.0" width="105.0" x="751.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent" id="BPMNShape_endevent">
+        <omgdc:Bounds height="35.0" width="35.0" x="1151.0" y="260.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="941.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="220.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="496.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="571.0" y="277.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="676.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="751.0" y="277.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="856.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="941.0" y="277.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="1046.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1151.0" y="277.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="325.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="391.0" y="277.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="135.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="220.0" y="277.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
