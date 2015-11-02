@@ -5,10 +5,9 @@ A simple proof of concept bpmn process for processing a bill. I.e, entering the 
 
 ### Installation
 
-pre. Install Maven using any means. I.e,    
-    brew install maven
+pre. Install Java 1.8 and install Maven using any means. I.e,
 
-Install Java 1.8
+    brew install maven
 
 1. mvn clean install
 
