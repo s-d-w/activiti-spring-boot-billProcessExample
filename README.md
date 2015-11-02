@@ -7,7 +7,8 @@ A simple proof of concept bpmn process for processing a bill. I.e, entering the 
 
 pre. Install Maven using any means. I.e,    
     brew install maven
-Java 1.8
+
+Install Java 1.8
 
 1. mvn clean install
 
@@ -18,7 +19,11 @@ Java 1.8
 
 Http basic auth is used (for now). To enter a bill into the system (start a new bill process), you can be any user that's created by the initializing bean. There are no fine grained permissions right now.
 
-There are two service tasks which demonstrate automatic processing such as payment processing. 
+There are two service tasks which demonstrate automatic processing such as payment processing.
+
+BPMN diagram (from Activiti Eclipse plugin)
+
+![BPMN Diagram](billProcDiagram.png?raw=true "BPMN Diagram") 
 
 
 ### Usage
