@@ -1,4 +1,5 @@
-### Activiti Spring-boot bill processs example
+#
+# Activiti Spring-boot bill processs example
 
 A simple proof of concept bpmn process for processing a bill. I.e, entering the bill into the system, validating, approving, and paying. There's no functionality in each step other than claiming it and then completing it.
 
